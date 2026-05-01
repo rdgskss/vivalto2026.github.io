@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivalto LLP — Transformation Specialists</title>
+  <meta name="description" content="Vivalto LLP is a specialist company focusing on projects and programmes that deliver significant change.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Core palette — deep navy + warm gold */
+      --navy:    #0f1f3d;
+      --navy-md: #1a3260;
+      --navy-lt: #2a4a80;
+      --gold:    #c8953a;
+      --gold-lt: #e0b060;
+      --gold-pale: #f5e8d0;
+      --slate:   #4a5568;
+      --mist:    #8898aa;
+      --border:  #e2e8f0;
+      --bg:      #f8f9fc;
+      --white:   #ffffff;
+
+      /* Typography */
+      --display: 'Bricolage Grotesque', sans-serif;
+      --body:    'Plus Jakarta Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--navy);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem;
+      height: 68px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: height 0.3s ease, box-shadow 0.3s ease;
+    }
+    nav.scrolled { height: 58px; box-shadow: 0 2px 20px rgba(15,31,61,0.08); }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; border: none; background: none; padding: 4px;
+    }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 68px;
+    }
+
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 4rem;
+      background: var(--white);
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold-pale);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+      width: fit-content;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+    }
+    .hero-title .accent { color: var(--gold); }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.65;
+      margin-bottom: 2.25rem;
+      max-width: 42ch;
+      border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--navy);
+      padding: 0.85rem 1.75rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+      border: 2px solid var(--navy);
+    }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--navy);
+      background: transparent;
+      padding: 0.85rem 1.75rem;
+      border-radius: 4px;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--navy); background: var(--bg); }
+
+    .btn-arrow { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* hero right */
+    .hero-right {
+      position: relative; overflow: hidden; background: var(--navy);
+    }
+    .hero-photo {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1200&q=80&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.3;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(15,31,61,0.92) 0%, rgba(26,50,96,0.7) 100%);
+    }
+    .hero-panel {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem;
+    }
+    .hero-panel-label {
+      font-family: var(--body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-panel-label::before { content: ''; width: 24px; height: 2px; background: var(--gold); display: block; }
+
+    .hero-panel-title {
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .breadth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.25rem; }
+    .breadth-item {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      padding-left: 1rem; position: relative; line-height: 1.5;
+    }
+    .breadth-item::before {
+      content: '';
+      position: absolute; left: 0; top: 0.55em;
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ── STATS BAND ── */
+    .stats-band { background: var(--navy); padding: 0; }
+    .stats-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr);
+    }
+    .stat-item {
+      padding: 2.25rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-icon { margin-bottom: 0.75rem; opacity: 0.6; }
+    .stat-num {
+      display: block;
+      font-family: var(--display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold-lt);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SHARED ── */
+    section { padding: 6rem 4rem; }
+    .inner { max-width: 1200px; margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+
+    /* ── ABOUT ── */
+    #people { background: var(--white); }
+    .people-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+
+    .people-text p {
+      font-size: 0.95rem;
+      color: var(--slate);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    .pull-quote {
+      margin: 1.75rem 0;
+      padding: 1.5rem 1.75rem;
+      background: var(--navy);
+      border-left: 4px solid var(--gold);
+    }
+    .pull-quote p {
+      font-family: var(--display) !important;
+      font-size: 1.25rem !important;
+      font-weight: 700 !important;
+      color: var(--white) !important;
+      line-height: 1.45 !important;
+      margin: 0 !important;
+      letter-spacing: -0.02em;
+    }
+
+    /* about visual */
+    .about-visual { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-photo-main { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+    .about-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .about-photo-sm { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+
+    .sectors-aside {
+      background: var(--navy); padding: 2rem 2.25rem; color: var(--white);
+    }
+    .aside-eyebrow {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .aside-title {
+      font-family: var(--display);
+      font-size: 1.05rem; font-weight: 700; color: var(--white);
+      margin-bottom: 1.25rem; line-height: 1.35; letter-spacing: -0.01em;
+    }
+    .sectors-list {
+      list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem;
+    }
+    .sectors-list li {
+      font-size: 0.8rem; font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      padding-left: 1rem; position: relative; line-height: 1.45;
+    }
+    .sectors-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.55em;
+      width: 5px; height: 5px;
+      background: var(--gold); border-radius: 50%;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg); }
+    .services-header {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-bottom: 3rem; align-items: end;
+    }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--border); }
+
+    .service-card {
+      background: var(--white);
+      padding: 2.25rem;
+      transition: background 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover { background: #fdfcfa; }
+
+    .service-card-img {
+      width: 100%; height: 130px;
+      object-fit: cover; object-position: center;
+      display: block; margin-bottom: 1.5rem;
+      filter: grayscale(25%);
+      transition: filter 0.3s;
+    }
+    .service-card:hover .service-card-img { filter: grayscale(0%); }
+
+    .service-num {
+      font-family: var(--display);
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .service-title {
+      font-family: var(--display);
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.75rem;
+      line-height: 1.25; letter-spacing: -0.02em;
+    }
+    .service-desc { font-size: 0.87rem; color: var(--slate); line-height: 1.75; }
+
+    /* ── PHOTO BREAK ── */
+    .photo-break { height: 400px; position: relative; overflow: hidden; }
+    .photo-break img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .photo-break-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(15,31,61,0.88) 0%, rgba(15,31,61,0.3) 70%);
+      display: flex; align-items: center; padding: 5rem 4rem;
+    }
+    .photo-break-text {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      max-width: 16ch;
+      letter-spacing: -0.03em;
+    }
+    .photo-break-text .accent { color: var(--gold-lt); }
+
+    /* ── APPROACH ── */
+    #approach { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
+    .approach-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=60&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.05;
+    }
+    .approach-layout {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .approach-title {
+      font-family: var(--display);
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-weight: 800; line-height: 1.1;
+      color: var(--white); margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+    .approach-title .accent { color: var(--gold-lt); }
+    .approach-text { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.85; margin-bottom: 1.1rem; }
+
+    .approach-steps { display: flex; flex-direction: column; }
+    .approach-step {
+      display: grid; grid-template-columns: 3rem 1fr; gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08); align-items: start;
+    }
+    .approach-step:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+
+    .step-num {
+      font-family: var(--display);
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--gold); line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .step-content strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+    .step-content p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+    }
+    .contact-cta p { font-size: 0.95rem; color: var(--slate); line-height: 1.8; margin-bottom: 1.1rem; }
+    .contact-cta .btn-primary { margin-top: 0.75rem; }
+
+    .contact-card {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .contact-card-header {
+      background: var(--navy);
+      padding: 1.75rem 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .contact-avatar {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display);
+      font-size: 1rem; font-weight: 800;
+      color: var(--white); flex-shrink: 0;
+    }
+    .contact-name {
+      font-family: var(--display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.15rem;
+      letter-spacing: -0.02em;
+    }
+    .contact-role {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .contact-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+    .contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .contact-label {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mist);
+    }
+    .contact-value { font-size: 0.95rem; font-weight: 500; color: var(--navy); }
+    .contact-value a { color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    .contact-value a:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 0;
+    }
+    .footer-top {
+      max-width: 1200px; margin: 0 auto;
+      padding: 2.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 1.25rem; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.8rem; font-weight: 500;
+      color: rgba(255,255,255,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding: 1.25rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+    .footer-credit { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { grid-template-columns: 1fr; padding-top: 68px; min-height: auto; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .hero-right { min-height: 50vh; }
+      .hero-panel { padding: 2rem 1.5rem; }
+      .breadth-grid { grid-template-columns: 1fr; gap: 0.4rem; }
+      section { padding: 4rem 1.5rem; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .people-layout, .approach-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo-pair { grid-template-columns: 1fr 1fr; }
+      .services-header { grid-template-columns: 1fr; gap: 1.25rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .sectors-list { grid-template-columns: 1fr; }
+      .photo-break { height: 280px; }
+      .photo-break-overlay { padding: 2rem 1.5rem; }
+      .footer-top, .footer-bottom { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Viv<span>alto</span></a>
+    <ul class="nav-links">
+      <li><a href="#people">About</a></li>
+      <li><a href="#services">What We Do</a></li>
+      <li><a href="#approach">Our Approach</a></li>
+      <li><a href="#contact" class="nav-cta">Contact us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <span class="hero-tag">Transformation Specialists</span>
+      <h1 class="hero-title">
+        Projects &amp; Programmes<br>
+        that Deliver<br>
+        <span class="accent">Significant Change</span>
+      </h1>
+      <p class="hero-tagline">Change has many parts but it's people that make it happen</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">
+          What we do
+          <svg class="btn-arrow" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#contact" class="btn-secondary">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-panel">
+        <p class="hero-panel-label">The breadth of our work</p>
+        <h2 class="hero-panel-title">Significant change across many disciplines</h2>
+        <div class="breadth-grid">
+          <span class="breadth-item">Social care transformation</span>
+          <span class="breadth-item">Public sector cost reduction</span>
+          <span class="breadth-item">Shared services</span>
+          <span class="breadth-item">ERP systems implementation</span>
+          <span class="breadth-item">Contract drafting &amp; negotiation</span>
+          <span class="breadth-item">Systems led transformation</span>
+          <span class="breadth-item">s151 management</span>
+          <span class="breadth-item">Internal operational audit</span>
+          <span class="breadth-item">Utilities transformation</span>
+          <span class="breadth-item">Customer segmentation</span>
+          <span class="breadth-item">Rail fares &amp; ticketing</span>
+          <span class="breadth-item">Transforming ways of working</span>
+          <span class="breadth-item">Staff &amp; stakeholder consultations</span>
+          <span class="breadth-item">Housing &amp; waste strategies</span>
+          <span class="breadth-item">Data migration</span>
+          <span class="breadth-item">Big Data reporting</span>
+          <span class="breadth-item">Mergers, Demergers &amp; Acquisitions</span>
+          <span class="breadth-item">E-commerce</span>
+          <span class="breadth-item">Sales commission &amp; incentive schemes</span>
+          <span class="breadth-item">Retail and publishing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <svg class="stat-icon" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <circle cx="13" cy="13" r="3" stroke="#e0b060" stroke-width="1.2"/>
+          <circle cx="4" cy="6" r="2" stroke="#e0b060" stroke-width="1"/>
+          <circle cx="22" cy="6" r="2" stroke="#e0b060" stroke-width="1"/>
+          <circle cx="4" cy="20" r="2" stroke="#e0b060" stroke-width="1"/>
+          <circle cx="22" cy="20" r="2" stroke="#e0b060" stroke-width="1"/>
+          <line x1="10.3" y1="11.3" x2="5.8" y2="7.7" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="15.7" y1="11.3" x2="20.2" y2="7.7" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="10.3" y1="14.7" x2="5.8" y2="18.3" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="15.7" y1="14.7" x2="20.2" y2="18.3" stroke="#e0b060" stroke-width="0.8"/>
+        </svg>
+        <span class="stat-num">20+</span>
+        <span class="stat-label">Disciplines served</span>
+      </div>
+      <div class="stat-item">
+        <svg class="stat-icon" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <rect x="3" y="9" width="8" height="14" stroke="#e0b060" stroke-width="1"/>
+          <rect x="15" y="5" width="8" height="18" stroke="#e0b060" stroke-width="1"/>
+          <line x1="3" y1="23" x2="23" y2="23" stroke="#e0b060" stroke-width="1"/>
+          <line x1="6" y1="13" x2="8" y2="13" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="6" y1="16" x2="8" y2="16" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="18" y1="9" x2="20" y2="9" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="18" y1="12" x2="20" y2="12" stroke="#e0b060" stroke-width="0.8"/>
+          <line x1="18" y1="15" x2="20" y2="15" stroke="#e0b060" stroke-width="0.8"/>
+        </svg>
+        <span class="stat-num">12+</span>
+        <span class="stat-label">Sectors &amp; contexts</span>
+      </div>
+      <div class="stat-item">
+        <svg class="stat-icon" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M3 19 L9 11 L15 15 L23 5" stroke="#e0b060" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 5 L23 5 L23 9" stroke="#e0b060" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="stat-num">Senior</span>
+        <span class="stat-label">Level commitment</span>
+      </div>
+      <div class="stat-item">
+        <svg class="stat-icon" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <circle cx="10" cy="8" r="3.5" stroke="#e0b060" stroke-width="1"/>
+          <circle cx="18" cy="8" r="3.5" stroke="#e0b060" stroke-width="1"/>
+          <path d="M2 21 C2 16.5 5.5 13 10 13" stroke="#e0b060" stroke-width="1" stroke-linecap="round"/>
+          <path d="M24 21 C24 16.5 20.5 13 16 13" stroke="#e0b060" stroke-width="1" stroke-linecap="round"/>
+          <path d="M10 13 C10 13 14 11 18 13" stroke="#e0b060" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <span class="stat-num">People</span>
+        <span class="stat-label">At the centre of change</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="people">
+    <div class="inner">
+      <div class="people-layout">
+        <div class="people-text reveal">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="section-title">Specialists in significant change</h2>
+          <p>Vivalto is a specialist company focusing on projects and programmes that deliver significant change. We work with organisations across the public and private sectors, bringing deep practical experience to complex transformation challenges.</p>
+          <div class="pull-quote">
+            <p>Change has many parts but it's people that make it happen</p>
+          </div>
+          <p>We understand that every transformation programme is different — shaped by the organisation, its people, and the particular challenge it faces. That is why we bring a hands-on, collaborative approach, working alongside your teams rather than at arm's length.</p>
+          <p>Our principal consultants have extensive track records delivering complex change programmes spanning local government, central government, utilities, financial services, rail, housing, retail, and the wider private sector. We combine specialist accounting, systems, and commercial expertise with the programme management rigour and people skills that major change demands.</p>
+          <p>Vivalto LLP is registered in England and Wales.</p>
+        </div>
+
+        <div class="about-visual reveal reveal-delay-2">
+          <img class="about-photo-main"
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&fit=crop"
+            alt="Team working through a transformation programme" loading="lazy">
+          <div class="about-photo-pair">
+            <img class="about-photo-sm"
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80&fit=crop"
+              alt="Data and reporting" loading="lazy">
+            <img class="about-photo-sm"
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80&fit=crop"
+              alt="Public sector and corporate organisations" loading="lazy">
+          </div>
+          <div class="sectors-aside">
+            <p class="aside-eyebrow">Sectors &amp; contexts</p>
+            <p class="aside-title">Significant change delivered across a wide range of sectors</p>
+            <ul class="sectors-list">
+              <li>Local government</li>
+              <li>Central government</li>
+              <li>Social care</li>
+              <li>NHS &amp; health</li>
+              <li>Utilities</li>
+              <li>Financial services</li>
+              <li>Rail &amp; transport</li>
+              <li>Housing</li>
+              <li>Retail &amp; publishing</li>
+              <li>E-commerce</li>
+              <li>Shared services</li>
+              <li>Mergers &amp; acquisitions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="inner">
+      <div class="services-header">
+        <div class="reveal">
+          <span class="eyebrow">What We Do</span>
+          <h2 class="section-title">Specialist expertise across the full change lifecycle</h2>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="section-lead">We focus on the disciplines that drive transformation — bringing specialist knowledge and proven delivery experience to the projects and programmes that matter most.</p>
+        </div>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <img class="service-card-img"
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=70&fit=crop"
+            alt="ERP and systems implementation" loading="lazy">
+          <div class="service-num">01 — ERP &amp; Systems</div>
+          <h3 class="service-title">ERP &amp; Systems Implementation</h3>
+          <p class="service-desc">Planning and delivering large-scale ERP and systems implementations with the accounting rigour and programme management discipline they demand. We ensure technology programmes stay grounded in operational and commercial reality.</p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <img class="service-card-img"
+            src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=600&q=70&fit=crop"
+            alt="Public sector transformation" loading="lazy">
+          <div class="service-num">02 — Public Sector</div>
+          <h3 class="service-title">Public Sector Transformation</h3>
+          <p class="service-desc">Deep experience in local and central government change — from social care transformation and public sector cost reduction to s151 management, shared services, and housing and waste strategies.</p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <img class="service-card-img"
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=70&fit=crop"
+            alt="Systems led transformation" loading="lazy">
+          <div class="service-num">03 — Systems Change</div>
+          <h3 class="service-title">Systems-Led Transformation</h3>
+          <p class="service-desc">Where systems change drives wider organisational transformation, we provide specialist leadership to manage the full programme — technology, process, people, and commercial outcomes brought together.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="service-card-img"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=70&fit=crop"
+            alt="Programme governance and audit" loading="lazy">
+          <div class="service-num">04 — Governance</div>
+          <h3 class="service-title">Programme Governance &amp; Audit</h3>
+          <p class="service-desc">Robust governance frameworks and internal operational audit to give leadership genuine visibility of progress, risk, and financial performance — turning the complexity of major programmes into clarity and control.</p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <img class="service-card-img"
+            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=70&fit=crop"
+            alt="Data migration and reporting" loading="lazy">
+          <div class="service-num">05 — Data</div>
+          <h3 class="service-title">Data Migration &amp; Reporting</h3>
+          <p class="service-desc">From complex data migration through systems change to Big Data reporting strategies — and from customer segmentation to management information — we help organisations make their data work.</p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <img class="service-card-img"
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=70&fit=crop"
+            alt="Commercial and contract" loading="lazy">
+          <div class="service-num">06 — Commercial</div>
+          <h3 class="service-title">Commercial &amp; Contract</h3>
+          <p class="service-desc">Contract drafting, negotiation, mergers, demergers, and acquisitions — as well as sales commission and incentive scheme design. Commercial rigour for the transactions and agreements that underpin change.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO BREAK -->
+  <div class="photo-break">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=75&fit=crop"
+      alt="Collaborative programme delivery" loading="lazy">
+    <div class="photo-break-overlay">
+      <p class="photo-break-text">Change has many parts but it's <span class="accent">people</span> that make it happen</p>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="approach-bg"></div>
+    <div class="inner">
+      <div class="approach-layout">
+        <div class="reveal">
+          <span class="eyebrow" style="color:var(--gold);">Our Approach</span>
+          <h2 class="approach-title">Rigorous thinking.<br><span class="accent">Practical delivery.</span></h2>
+          <p class="approach-text">At Vivalto we believe that significant change requires both deep specialist knowledge and a pragmatic, disciplined approach to delivery. We combine technical expertise with the people skills that real transformation demands.</p>
+          <p class="approach-text">Change has many parts — systems, processes, data, contracts, governance — but it's people who make it happen. Our approach always keeps that truth at its centre, working alongside your teams and adapting to the culture and context of your organisation.</p>
+          <p class="approach-text">We are not a large generalist firm. We are a focused specialist practice that brings senior-level commitment and accountability to every engagement.</p>
+        </div>
+        <div class="approach-steps reveal reveal-delay-2">
+          <div class="approach-step">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <strong>Understand</strong>
+              <p>We invest the time to genuinely understand your organisation, your people, and the full complexity of the challenge before recommending any course of action.</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <strong>Plan</strong>
+              <p>A clear, realistic plan — with transparent assumptions, defined milestones, and honest risk management — forms the foundation of every programme we support.</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <strong>Deliver</strong>
+              <p>We bring specialist resource and hands-on commitment to delivery, maintaining the momentum and discipline that complex programmes require to succeed.</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <strong>Sustain</strong>
+              <p>We help embed lasting change — ensuring the capabilities, controls, and ways of working put in place continue to deliver value well beyond programme close.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="inner">
+      <div class="contact-layout">
+        <div class="reveal">
+          <span class="eyebrow">Get in Touch</span>
+          <h2 class="section-title">Let's talk about your programme</h2>
+          <div class="contact-cta">
+            <p>Whether you are at the early stages of planning a major change initiative, or need specialist support for a programme already underway, we would welcome the chance to have an initial conversation.</p>
+            <p>There is no obligation — just a straightforward discussion about what you are trying to achieve and whether Vivalto can help.</p>
+            <a href="mailto:richard.lungley@vivalto.com" class="btn-primary">
+              Send a message
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="contact-card">
+            <div class="contact-card-header">
+              <div class="contact-avatar">RL</div>
+              <div>
+                <p class="contact-name">Richard Lungley</p>
+                <p class="contact-role">Partner</p>
+              </div>
+            </div>
+            <div class="contact-body">
+              <div class="contact-item">
+                <p class="contact-label">Telephone</p>
+                <p class="contact-value"><a href="tel:+447968286227">+44 (0)7968 286 227</a></p>
+              </div>
+              <div class="contact-item">
+                <p class="contact-label">Email</p>
+                <p class="contact-value"><a href="mailto:richard.lungley@vivalto.com">richard.lungley@vivalto.com</a></p>
+              </div>
+              <div class="contact-item">
+                <p class="contact-label">Organisation</p>
+                <p class="contact-value">Vivalto LLP — Registered in England &amp; Wales</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo">Viv<span>alto</span> LLP</div>
+      <div class="footer-links">
+        <a href="#people">About</a>
+        <a href="#services">What We Do</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Vivalto LLP. All rights reserved. Registered in England &amp; Wales.</p>
+      <p class="footer-credit">Photography: Unsplash (free commercial licence)</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav compact on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+</body>
+</html>
